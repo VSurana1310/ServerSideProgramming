@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admission - XYZ College</title>
+</head>
+<body>
+
+    <h1>Admission Form</h1>
+    <a href="index.html">Home</a>
+
+    <form action="submit_form.php" method="post">
+        <label>First Name:</label>
+        <input type="text" name="firstname" required><br><br>
+
+        <label>Last Name:</label>
+        <input type="text" name="lastname" required><br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" required><br><br>
+
+        <label>Preferred Course:</label>
+        <select name="course">
+            <option value="cs">Computer Science</option>
+            <option value="math">Mathematics</option>
+            <option value="english">English</option>
+            <option value="sociology">Sociology</option>
+        </select><br><br>
+
+        <input type="submit" value="Apply">
+    </form>
+
+</body>
+</html>
