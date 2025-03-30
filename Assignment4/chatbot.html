@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple JavaScript Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .chat-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #fff;
+            text-align: left;
+        }
+        .user-message {
+            text-align: right;
+            color: blue;
+        }
+        .bot-message {
+            text-align: left;
+            color: green;
+        }
+        input {
+            width: 70%;
+            padding: 8px;
+        }
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <h2>Simple Chatbot</h2>
+        <div class="chat-box" id="chatBox"></div>
+        <input type="text" id="userInput" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value.trim();
+            if (userInput === "") return;
+            
+            const chatBox = document.getElementById("chatBox");
+
+            // Display user message
+            const userMessage = document.createElement("p");
+            userMessage.className = "user-message";
+            userMessage.innerText = "You: " + userInput;
+            chatBox.appendChild(userMessage);
+
+            // Get chatbot response
+            const botMessage = document.createElement("p");
+            botMessage.className = "bot-message";
+            botMessage.innerText = "Bot: " + getBotResponse(userInput);
+            chatBox.appendChild(botMessage);
+
+            // Clear input
+            document.getElementById("userInput").value = "";
+
+            // Auto-scroll to bottom
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function getBotResponse(input) {
+            const lowerInput = input.toLowerCase();
+            if (lowerInput.includes("hello") || lowerInput.includes("hi")) {
+                return "Hello! How can I assist you today? 😊";
+            } else if (lowerInput.includes("how are you")) {
+                return "I'm just a bot, but I'm doing great! How about you?";
+            } else if (lowerInput.includes("name")) {
+                return "I am a simple chatbot created with JavaScript!";
+            } else if (lowerInput.includes("bye")) {
+                return "Goodbye! Have a great day! 👋";
+            } else {
+                return "Sorry, I don't understand that. Can you rephrase?";
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+    </script>
+
+</body>
+</html>
